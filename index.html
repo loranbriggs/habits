@@ -1,0 +1,75 @@
+<!doctype html>
+<html ng-app="habitApp">
+
+<head>
+    <script src="assets/js/jquery-1.9.1.min.js"></script>
+    <script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/default.js"></script>
+    <script src="assets/js/habits.js"></script>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"
+        type="text/css" />
+    <link rel="stylesheet" href="assets/css/bootstrap-responsive.min.css"
+        type="text/css" />
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/habit.css" type="text/css" />
+    <title>Habbits</title>
+</head>
+
+<body ng-app='habitApp'>
+    <div ng-controller='HabitController' ng-init="init()">
+        <ul class="nav nav-tabs" id="habitNav">
+            <li class="active">
+                <a href="#all" ng-click="changeFilterType('')">
+                    <span class="circle circle-all">
+                        All
+                    </span>
+                </a>
+            </li>
+            <li ng-repeat="type in types">
+                <a href="#all" ng-click="changeFilterType(type)">
+                    <span class="circle circle-{{ type }}">
+                        {{ showPoint(type) }}
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#add">
+                    <span class="circle circle-add">
+                        +
+                    </span>
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div id="all" class="tab-pane active">
+                <ul>
+                    <li class="habit"
+                        ng-repeat="habit in habits | filter:filterString | filter:{type:filterType}"
+                        ng-click="doHabit(habit.type, habit.points)">
+                        <span class="circle circle-small circle-{{habit.type}}">
+                        </span>
+                        <span class="habit-name">{{ habit.name }}</span>
+                        <span class="habit-points">{{ habit.points }}</span>
+                    </li>
+                </ul>
+            </div>
+            <div id="add" class="tab-pane">
+                <h3>New Habit</h3>
+                <label>Name:</label>
+                <input type="text" ng-model="newHabit.name" /><br />
+                <label>Type:</label>
+                <select required="required"
+                    ng-model="newHabit.type" ng-options="value for value in types"></select>
+                <label>Points:</label>
+                <input type="text" ng-model="newHabit.points" /><br />
+                <button class="btn btn-info" ng-click="addHabit()">Add</button>
+            </div>
+        </div>
+        <hr />
+        Filter Habbits:<br />
+        <input type ="text" ng-model="filterString" /><br />
+    </div>
+</body>
+
+</html>

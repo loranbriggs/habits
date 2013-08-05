@@ -1,0 +1,60 @@
+body {
+	width: 320px;
+	margin: 10% auto;
+}
+
+.habit {
+	cursor: pointer;
+}
+
+.habit-name {
+	display: inline-block;
+	width: 80%;
+}
+
+.habit-points {
+	display: inline-block;
+	float: right;
+	text-align: right;
+}
+
+.circle {
+	display: inline-block;
+	height:32px;
+	width:32px;
+	border-radius: 32px;
+	line-height: 32px;
+	text-align: center;
+	color: white;
+}
+
+.circle-small {
+	height:16px;
+	width:16px;
+}
+
+.circle-all {
+	background-color: black;
+}
+
+.circle-add {
+	background-color: yellow;
+}
+
+.circle-health{
+	background-color: red;
+}
+
+.circle-money{
+	background-color: green;
+}
+
+.circle-time{
+	background-color: blue;
+}
+
+ul {
+	list-style: none;
+}
+
+
